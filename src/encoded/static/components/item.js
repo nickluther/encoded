@@ -81,7 +81,7 @@ class DisplayText extends React.Component {
                                 </dl>
                             </div>
                         </div>
-                    )};
+                    )}
                 </div>
             );
         });
