@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
@@ -757,6 +758,7 @@ function StatusData(experiments, unreplicated, isogenic, anisogenic) {
     let unreplicatedArray;
     let isogenicArray;
     let anisogenicArray;
+    const labels = [];
     const unreplicatedLabel = [];
     let unreplicatedDataset = [];
     const isogenicLabel = [];
@@ -772,7 +774,16 @@ function StatusData(experiments, unreplicated, isogenic, anisogenic) {
         isogenicArray = (isogenicFacet && isogenicFacet.terms && isogenicFacet.terms.length) ? isogenicFacet.terms : [];
         anisogenicArray = (anisogenicFacet && anisogenicFacet.terms && anisogenicFacet.terms.length) ? anisogenicFacet.terms : [];
     }
-    const labels = ['proposed', 'started', 'submitted', 'released', 'deleted', 'replaced', 'archived', 'revoked'];
+
+    if (experiments && experiments.facets && experiments.facets.length) {
+        const totalLabels = experiments.facets.find(facet => facet.field === 'status');
+        for (let i = 0; i < totalLabels.terms.length; i += 1) {
+            if (totalLabels.terms[i].doc_count !== 0) {
+                labels.push(totalLabels.terms[i].key);
+            }
+        }
+    }
+
     if (unreplicatedArray.length) {
         for (let j = 0; j < labels.length; j += 1) {
             for (let i = 0; i < unreplicatedArray.length; i += 1) {
@@ -2060,8 +2071,8 @@ class Award extends React.Component {
                             <div className="description__columnone">
                                 <dl className="key-value">
                                     <div data-test="projectinfo">
-                                        <dt>NHGRI project information</dt>
-                                        <dd><a href={context.url} title={`${context.name} project page at NHGRI`}>{context.name}</a></dd>
+                                        <dt>NIH Grant</dt>
+                                        <dd><a href={context.url} title={`${context.name} NIH Grant`}>{context.name}</a></dd>
                                     </div>
                                 </dl>
                                 {context.pi && context.pi.lab ?
