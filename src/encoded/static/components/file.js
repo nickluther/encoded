@@ -11,6 +11,7 @@ import * as globals from './globals';
 import { requestFiles, requestObjects, requestSearch, RestrictedDownloadButton } from './objectutils';
 import { ProjectBadge } from './image';
 import { QualityMetricsPanel } from './quality_metric';
+import { PickerActions } from './search';
 import { SortTablePanel, SortTable } from './sorttable';
 import StatusLabel from './statuslabel';
 
@@ -675,6 +676,7 @@ class Listing extends React.Component {
         return (
             <li>
                 <div className="clearfix">
+                    <PickerActions {...this.props} />                    
                     <div className="pull-right search-meta">
                         <p className="type meta-title">File</p>
                         <p className="type">{` ${result.title}`}</p>

@@ -45,7 +45,8 @@ $file-statuses:
     (released, #00bb00, #fff),
     (replaced, #ff0000, #fff),
     (revoked, #ff0000, #fff),
-    (archived, #a0a0a0, #fff);
+    (archived, #a0a0a0, #fff),
+    (error, #ff0000, #fff);
 
 g.node.pipeline-node-file {
     & > rect {
@@ -53,10 +54,14 @@ g.node.pipeline-node-file {
     }
 
     @each $file-status, $color in $file-statuses {
-        &.#{$file-status} > rect{
+        &.#{$file-status} > rect {
             stroke: $color;
         }
     }
+}
+
+g.node.pipeline-node-file.error {
+    stroke-dasharray: 4,2;
 }
 
 .file-label {

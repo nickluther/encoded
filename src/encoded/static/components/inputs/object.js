@@ -36,7 +36,7 @@ class SearchBlockEdit extends React.Component {
                 className="well" style={styles} onClick={openLinksInNewWindow}
                 ref={(comp) => { this.domNode = comp; }}
             >
-                <ResultTable {...this.props} mode="picker" />
+                <ResultTable {...this.props} assemblies={[]} mode="picker" />
             </div>
         );
     }
