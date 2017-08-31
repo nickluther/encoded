@@ -14,29 +14,12 @@ $pipeline-node-types:
 
             > rect, > ellipse {
                 stroke: #606060;
-                stroke-width: 3px;
             }
 
             line {
                 stroke: #606060;
                 stroke-width: 1px;
             }
-        }
-
-        &.error, &.restricted {
-            fill: #ffc0c0;
-        }
-
-        &.revoked {
-            fill: #B24342;
-
-            g.label {
-                fill: #fff;
-            }
-        }
-
-        &.archived {
-            fill: #c0c0c0;
         }
 
         &:hover {
@@ -50,6 +33,40 @@ $pipeline-node-types:
 
     .graph-modal-#{$node-type} {
         background-color: $color;
+    }
+}
+
+$file-statuses:
+    (uploading, #a0a0a0, #fff),
+    (content-error, #ff0000, #fff),
+    (upload-failed, #ff0000, #fff),
+    (in-progress, #6688ff, #fff),
+    (deleted, #ff0000, #fff),
+    (released, #00bb00, #fff),
+    (replaced, #ff0000, #fff),
+    (revoked, #ff0000, #fff),
+    (archived, #a0a0a0, #fff);
+
+g.node.pipeline-node-file {
+    & > rect {
+        stroke-width: 3px;
+    }
+
+    @each $file-status, $color in $file-statuses {
+        &.#{$file-status} > rect{
+            stroke: $color;
+        }
+    }
+}
+
+.file-label {
+    @extend .label;
+    
+    @each $file-status, $color, $text-color in $file-statuses {
+        &.status-#{$file-status} {
+            color: $text-color;
+            background-color: $color;
+        }
     }
 }
 

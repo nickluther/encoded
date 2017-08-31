@@ -366,7 +366,7 @@ class FileComponent extends React.Component {
                         <div className="status-line">
                             {context.status ?
                                 <div className="characterization-status-labels">
-                                    <StatusLabel title="Status" status={context.status} />
+                                    <StatusLabel title="Status" status={context.status} fileStatus />
                                 </div>
                             : null}
                             {this.props.auditIndicators(context.audit, 'file-audit', { session: this.context.session })}
