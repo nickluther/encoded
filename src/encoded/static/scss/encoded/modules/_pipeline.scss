@@ -23,6 +23,13 @@ $pipeline-node-types:
             }
         }
 
+        &.indicated {
+            > rect {
+                stroke: #4040c0;
+                stroke-width: 3px;
+            }
+        }
+
         &.error, &.restricted {
             fill: #ffc0c0;
         }
